@@ -1,12 +1,14 @@
+import CardGrid from "../component/CardGrid";
 import Hero from "../component/Hero";
 
-const Home = () => {
+const Home = ({ features }) => {
+  console.log(features);
+
   return (
-    <section className="min-h-screen flex items-center justify-center">
-      <h1 className="text-2xl font-bold">
-        <Hero/>
-      </h1>
-    </section>
+    <div>
+      <Hero />
+      <CardGrid features={features} />
+    </div>
   );
 };
 
