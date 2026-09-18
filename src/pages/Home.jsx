@@ -7,7 +7,7 @@ const Home = ({ features }) => {
   return (
     <div>
       <Hero />
-      <CardGrid features={features} />
+      <CardGrid />
     </div>
   );
 };

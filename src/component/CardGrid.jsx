@@ -1,17 +1,32 @@
-import { Card } from "./Card";
+import { useEffect, useState } from "react";
+import { getData } from "../api/getData";
+import Card from "./Card";
 
-export const CardGrid = ({features}) => {
-  return(
+function CardGrid() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getData();
+      setProducts(data);
+    };
+
+    fetchData();
+  }, []);
+
+  return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 border-2 border-slate-400 p-4">
-      {
-        features.map((data) => {
-          return(
-            <Card key={data.id} icon={data.icon} title={data.title} subtitle={data.subtitle}/>
-          )
-        })
-      }
+      {products.map((product) => (
+        <Card
+          key={product.id}
+          image = {product.image}
+          title={product.title}
+          subtitle={`$${product.price}`}
+          
+        />
+      ))}
     </div>
-  )
+  );
 }
 
-export default CardGrid
+export default CardGrid;
